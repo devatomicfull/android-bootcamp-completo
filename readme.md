@@ -16,7 +16,7 @@ Este exercício demonstra formas diferentes de implementar eventos de clique em 
 
 1. Clone o repositório:  
    ```bash
-   git clone https://github.com/seu_usuario/android-bootcamp-completo.git 
+   git clone https://github.com/devatomicfull/android-bootcamp-completo.git 
 
 
 
