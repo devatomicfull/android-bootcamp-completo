@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/round_solid_background"
+        android:text="Texto 4"
+        android:layout_marginBottom="16dp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+
+    <!-- null -> IMPORTANTE para evitar o override do Material -->
+    <Button
+        android:id="@+id/clique"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        android:text="Clique"
+        android:onClick="animated"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        android:background="@drawable/round_gradient_background"
+        app:backgroundTint="@null"
+        />
+
+    <ProgressBar
+        android:id="@+id/progress"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:indeterminate="true"
+        android:indeterminateDrawable="@drawable/progress_ring"
+        android:layout_gravity="center" />
+
+    <EditText
+        android:id="@+id/editTextDigitado"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="digite algo"
+        android:textAlignment="center"
+        android:layout_margin="10dp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:fontFamily="sans-serif-black"
+        android:theme="@style/Widget.Material3.Button.OutlinedButton"/>
+
+</LinearLayout>

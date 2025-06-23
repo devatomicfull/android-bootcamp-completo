@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- principalmente para criar formas circulares, como as usadas em barras de progresso (ProgressBar) do tipo indeterminado ou determinadas com estilo circular.  -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="ring">
+
+    <!--innerRadius: Define o raio interno do círculo. Isso determina o tamanho do "furo" no meio do anel. Quanto maior esse valor, maior o furo. -->
+    <!--thickness: Define a espessura do anel (diferença entre raio externo e interno). -->
+    <!--useLevel: Indica se o anel deve usar o nível (level) para controlar o progresso da animação. Se true, o anel será desenhado proporcionalmente ao nível da ProgressBar (de 0 a 10000). Isso é essencial para que ele reaja ao progresso dinamicamente. -->
+    <ring
+        android:innerRadius="30dp"
+        android:thickness="6dp"
+        android:useLevel="true" /> <!-- Importante para animação com ProgressBar -->
+
+    <solid android:color="@color/abacate" />
+</shape>

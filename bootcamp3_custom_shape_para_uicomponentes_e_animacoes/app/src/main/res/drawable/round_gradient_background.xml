@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- Formato de retangulo -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+
+    <!-- Define os cantos arredondados do botão -->
+    <!-- 'radius' aplica raio geral, mas pode ser sobrescrito por cantos individuais -->
+    <!-- Aqui, o canto superior direito e o inferior esquerdo são exageradamente arredondados -->
+
+    <!-- Raio padrão para cantos não especificados -->
+    <!-- Raio personalizado para canto superior direito -->
+    <!-- Raio personalizado para canto inferior esquerdo -->
+    <corners
+    android:radius="16dp"
+    android:topRightRadius="90dp"
+    android:bottomLeftRadius="90dp" />
+
+    <!-- Gradiente de fundo -->
+    <!-- Define uma transição de cores na diagonal (45 graus) -->
+    <!-- O gradiente inicia na cor 'primary_dark', passa pelo centro com 'black' e termina em 'abacate' -->
+
+    <!-- Cor inicial -->
+    <!-- Cor central (opcional) -->
+    <!-- Cor final -->
+    <!-- Ângulo do gradiente -->
+    <!-- Útil em drawables com estados; aqui, pode ser false também -->
+    <gradient
+    android:startColor="@color/design_default_color_primary_dark"
+    android:centerColor="@color/black"
+    android:endColor="@color/abacate"
+    android:angle="45"
+    android:useLevel="true" />
+
+    <!-- Borda do botão -->
+    <!-- Define a largura e a cor da borda -->
+    <!-- Os atributos 'dashWidth' e 'dashGap' estão vazios: se quiser linha pontilhada, preencha-os -->
+
+    <!-- Largura da borda -->
+    <!-- Cor da borda -->
+    <!-- Comprimento de cada traço -->
+    <!-- Espaço entre os traços -->
+    <stroke
+    android:width="2dp"
+    android:color="@color/black"
+    android:dashWidth="16dp"
+    android:dashGap="10dp" />
+
+</shape>

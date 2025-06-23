@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Drawable que representa uma linha horizontal ou vertical -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="line"> <!-- Define que o shape é uma linha -->
+
+    <!-- Cor da linha -->
+    <!-- Espessura da linha -->
+    <stroke
+        android:color="@color/abacate"
+        android:width="4dp" />
+
+    <!-- Opcional: padding ao redor da linha, útil quando o drawable é usado em backgrounds -->
+    <padding
+        android:left="0dp"
+        android:right="0dp"
+        android:top="0dp"
+        android:bottom="8dp" />
+</shape>
