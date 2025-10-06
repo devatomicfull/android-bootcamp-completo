@@ -7,6 +7,7 @@
 - [Botão, Eventos de Clique e Mudança de Cor do thumb do Switch, Uso do TextToSpeech para leitura de textos, DatePicker e Eventos de Alteração de Data](#bootcamp2)
 - [Customização de Shapes (Formas), Animações, Progress Bar e Intent (É um objeto que representa a intenção de realizar uma ação)](#bootcamp3)
 - [Ciclo de Vida das Activity.java Activity.xml)](#bootcamp4)
+- [SharedPreferences, Preferências persistentes no app](#bootcamp5)
 ---
 
 ## Descrição do Projeto
@@ -62,6 +63,29 @@ Este exercício demonstra o ciclo de vida de uma Activity no Android, explicando
 - `MainActivity.java` – demonstra a implementação dos métodos de ciclo de vida.
 - Layout XML (`activity_main.xml`) – interface simples com TextView ou logs para acompanhar os estados.
 
+## <a id="bootcamp5"></a> Tópico 5: Gerenciamento de Preferências com SharedPreferences
+
+Este exercício demonstra o uso de **SharedPreferences** no Android para salvar e recuperar configurações do usuário, como o estado de notificações, garantindo persistência entre sessões do app.
+
+### Conceitos abordados:
+- Uso de `SharedPreferences` para armazenamento simples de dados chave-valor.
+- Leitura e escrita de valores booleanos no SharedPreferences.
+- Atualização da interface com base nas preferências salvas.
+- Listener `OnCheckedChangeListener` para capturar alterações do usuário.
+
+### Exemplos de uso:
+- Controlar o estado de notificações do usuário com um `Switch`.
+- Salvar automaticamente alterações usando `apply()` ou `commit()`.
+- Ler preferências salvas ao iniciar a Activity para configurar a interface corretamente.
+
+### Boas práticas:
+- Evitar operações pesadas ao salvar preferências.
+- Inicializar SharedPreferences no `onCreate()` da Activity.
+- Usar constantes para as chaves das preferências para evitar erros de digitação.
+
+### Arquivos / Classes principais:
+- `MainActivity.java` – implementa o Switch e gerencia as preferências.
+- Layout XML (`activity_main.xml`) – contém o Switch de notificações.
 
 ## Como Executar
 
