@@ -8,6 +8,7 @@
 - [Customização de Shapes (Formas), Animações, Progress Bar e Intent (É um objeto que representa a intenção de realizar uma ação)](#bootcamp3)
 - [Ciclo de Vida das Activity.java Activity.xml)](#bootcamp4)
 - [SharedPreferences, Preferências persistentes no app](#bootcamp5)
+- [Logcat e Registro para Fins de Depuração](#bootcamp6)
 ---
 
 ## Descrição do Projeto
@@ -86,6 +87,27 @@ Este exercício demonstra o uso de **SharedPreferences** no Android para salvar 
 ### Arquivos / Classes principais:
 - `MainActivity.java` – implementa o Switch e gerencia as preferências.
 - Layout XML (`activity_main.xml`) – contém o Switch de notificações.
+
+## <a id="bootcamp6"></a> Tópico 6: Logcat e Registro para Fins de Depuração no Android
+
+Este exercício demonstra como utilizar o **Logcat** no Android para registrar informações importantes durante a execução do aplicativo. Permite acompanhar eventos do ciclo de vida, interações do usuário e execução de loops, facilitando a depuração.
+
+### Conceitos abordados:
+- Uso da classe `Log` do Android para registrar mensagens no Logcat.
+- Diferentes níveis de log:
+  - `Log.d()` – Debug
+  - `Log.i()` – Informação
+  - `Log.w()` – Aviso
+  - `Log.e()` – Erro
+- Uso de **TAGs** para identificar a origem das mensagens no Logcat.
+
+### Exemplos de uso:
+- Registrar a chamada do método `onCreate()`:
+  ```java
+  Log.d("TAG", "método onCreate chamado");
+
+### Exemplos de consulta/depuracao no Logcat no androidStudio :
+- tag=:TAG
 
 ## Como Executar
 
