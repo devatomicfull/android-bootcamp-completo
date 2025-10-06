@@ -6,6 +6,7 @@
 - [Botão, Eventos de Clique e Mudança de Cor do BackGround do App](#bootcamp1)
 - [Botão, Eventos de Clique e Mudança de Cor do thumb do Switch, Uso do TextToSpeech para leitura de textos, DatePicker e Eventos de Alteração de Data](#bootcamp2)
 - [Customização de Shapes (Formas), Animações, Progress Bar e Intent (É um objeto que representa a intenção de realizar uma ação)](#bootcamp3)
+- [Ciclo de Vida das Activity.java Activity.xml)](#bootcamp4)
 ---
 
 ## Descrição do Projeto
@@ -33,6 +34,34 @@ Animações com `ObjectAnimator` e `ValueAnimator` aplicadas ao `ProgressBar` e 
 Uso de `Intent` para navegação entre telas (Activities): Envio de texto digitado no `EditText` da tela principal para a segunda tela (`SegundaTelaActivity`). 
 
 Uso de putExtra e getStringExtra para transportar dados entre atividades. Este exercício consolida a compreensão de personalização visual, uso de animações e comunicação entre telas em um aplicativo Android.
+
+## <a id="bootcamp4"></a> Tópico 4: Ciclo de Vida da Activity
+
+Este exercício demonstra o ciclo de vida de uma Activity no Android, explicando os métodos fundamentais que controlam o estado de uma tela, como criação, pausa, retomada e destruição. O objetivo é que o desenvolvedor compreenda como gerenciar recursos, salvar estados temporários e reagir a mudanças de visibilidade da tela de forma eficiente.
+
+### Conceitos abordados:
+- **onCreate()** – inicialização da Activity e configuração do layout.
+- **onStart()** – Activity prestes a se tornar visível ao usuário.
+- **onResume()** – Activity pronta para interação.
+- **onPause()** – Activity parcialmente oculta, ideal para salvar estados temporários.
+- **onStop()** – Activity completamente oculta, libera recursos que não precisam mais estar ativos.
+- **onDestroy()** – Activity prestes a ser destruída, momento para liberar recursos finais.
+- **onRestart()** – Activity reiniciada após ter sido parada.
+
+### Exemplos de uso:
+- Salvar e restaurar estados de UI usando `onSaveInstanceState` e `onRestoreInstanceState`.
+- Pausar e retomar animações, vídeos ou sons conforme o estado da Activity.
+- Gerenciar conexões de rede e sensores para evitar consumo desnecessário quando a Activity não está visível.
+
+### Boas práticas:
+- Evitar operações pesadas em `onCreate()`; usar `onStart()` ou `onResume()` quando possível.
+- Liberar recursos em `onPause()` ou `onStop()` para otimizar memória.
+- Utilizar `onSaveInstanceState` para salvar dados temporários do usuário.
+
+### Arquivos / Classes principais:
+- `MainActivity.java` – demonstra a implementação dos métodos de ciclo de vida.
+- Layout XML (`activity_main.xml`) – interface simples com TextView ou logs para acompanhar os estados.
+
 
 ## Como Executar
 
