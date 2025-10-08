@@ -9,6 +9,7 @@
 - [Ciclo de Vida das Activity.java Activity.xml)](#bootcamp4)
 - [SharedPreferences, Preferências persistentes no app](#bootcamp5)
 - [Logcat e Registro para Fins de Depuração](#bootcamp6)
+- [Ciclo de Vida da Activity e da Application](#bootcamp7)
 ---
 
 ## Descrição do Projeto
@@ -108,6 +109,83 @@ Este exercício demonstra como utilizar o **Logcat** no Android para registrar i
 
 ### Exemplos de consulta/depuracao no Logcat no androidStudio :
 - tag=:TAG
+
+## <a id="bootcamp7"></a> Tópico 7: Ciclo de Vida da Activity e da Application no Android
+
+
+### Descrição do Projeto
+Este exercício demonstra e compara os ciclos de vida de uma **Activity** e da **Application** em aplicações Android. O objetivo é entender sequências de callbacks, onde inicializar recursos, como depurar com `Logcat` e as diferenças práticas entre os ciclos de vida das duas entidades.
+
+
+### Ciclo de Vida da Activity e da Application
+Análise detalhada das chamadas de lifecycle, mostrando como e quando cada método é executado, com exemplos práticos usando `Log` para inspeção via Logcat.
+
+
+### Conceitos abordados
+- Ciclo de vida da **Activity**: `onCreate()`, `onStart()`, `onResume()`, `onPause()`, `onStop()`, `onDestroy()`, `onRestart()`.
+- Ciclo de vida da **Application**: `onCreate()` (executado quando o processo da aplicação é criado).
+- Uso do `Log` (Log.d, Log.w, Log.i, Log.e) para depuração.
+- Filtragem de logs no Logcat por TAG e nível.
+
+
+### Exemplos de uso (logs / códigos)
+
+### `App.java` (Application)
+```java
+package devatomicfull.bootcamp7_activity_lifecycle;
+
+import android.app.Application;
+import android.util.Log;
+
+public class App extends Application {
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        Log.d("my_log", "APP onCreate called"); // chamado primeiro, quando o processo é criado
+    }
+}
+
+Obs.: App deve estar declarada no AndroidManifest.xmlvia android:name=".App"(já presente no projeto).
+
+### 📱 Ciclo de Vida - Application
+
+- Instância **única por processo**;  
+- O método **`onCreate()`** é chamado **uma vez** quando o processo do aplicativo inicia;  
+- O ciclo de vida está ligado **ao processo do aplicativo**;  
+- Ideal para **inicializar singletons**, bibliotecas e configurações globais que precisam existir enquanto o processo estiver ativo;  
+- ⚠️ **Não confie em `onTerminate()` em produção** — ele é chamado apenas em emuladores ou em alguns cenários específicos, **não faz parte do ciclo normal de apps Android**.
+
+---
+
+### 🧭 Ciclo de Vida - Activity
+
+- Podem existir **várias instâncias** (uma por tela ou `Intent`);  
+- Ciclo de vida está relacionado à **visibilidade e interação da interface do usuário**;  
+- Métodos principais chamados durante o ciclo:  
+  - **`onCreate()`** → Quando a Activity é criada;  
+  - **`onStart()`** → Quando a Activity se torna visível;  
+  - **`onResume()`** → Quando está pronta para interação com o usuário;  
+  - **`onPause()`** → Quando outra Activity ganha foco;  
+  - **`onStop()`** → Quando deixa de ser visível;  
+  - **`onDestroy()`** → Antes de ser destruída.  
+- Deve gerenciar recursos **relacionados à UI**, como:  
+  - Registrar ouvintes (`listeners`);  
+  - Pausar animações;  
+  - Liberar sensores e outros recursos visuais;  
+- Mais suscetível a eventos intermediários como:  
+  - **Mudança de orientação**;  
+  - **Troca de atividade**;  
+  - **Usuário saindo do app**.
+
+---
+
+## 🧩 Resumo Prático
+
+- Utilize **`Application.onCreate()`** para:
+  - Inicializações **globais** (ex.: banco de dados, singletons, bibliotecas, configurações).  
+- Utilize os métodos de **`Activity`** para:
+  - **Lógica da interface**, controle de **visibilidade** e **estado da tela**.  
+
 
 ## Como Executar
 
