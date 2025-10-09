@@ -10,6 +10,8 @@
 - [SharedPreferences, Preferências persistentes no app](#bootcamp5)
 - [Logcat e Registro para Fins de Depuração](#bootcamp6)
 - [Ciclo de Vida da Activity e da Application](#bootcamp7)
+- [Streaming de Vídeo Online ou Reprodução Local no Android](#bootcamp8)
+
 ---
 
 ## Descrição do Projeto
@@ -185,6 +187,44 @@ Obs.: App deve estar declarada no AndroidManifest.xmlvia android:name=".App"(já
   - Inicializações **globais** (ex.: banco de dados, singletons, bibliotecas, configurações).  
 - Utilize os métodos de **`Activity`** para:
   - **Lógica da interface**, controle de **visibilidade** e **estado da tela**.  
+
+## <a id="bootcamp8"></a> Tópico 8: Streaming de Vídeo Online ou Reprodução Local no Android
+
+## Objetivo
+Demonstrar diferentes formas de reproduzir vídeos no Android, usando VideoView, SurfaceView, TextureView e ExoPlayer/Media3.
+
+## Uso
+- Reproduzir vídeos locais (res/raw) ou remotos (HLS, MP4)
+- Testar ciclos de vida de MediaPlayer e ExoPlayer
+- Demonstrar diferentes formas de construir URI para recursos internos
+- Ensinar boas práticas de liberação de recursos e integração com UI
+
+## Classes / Arquivos
+- MainActivity.java
+- activity_main.xml
+
+## Para que serve
+- Ensinar reprodução de vídeo eficiente e moderna no Android
+- Fornecer exemplos de streaming e manipulação de superfícies
+- Demonstrar integração de Media3 ExoPlayer para streaming profissional
+
+## Alternativas / melhorias futuras
+- Suporte a DASH e adaptive streaming
+- Player customizado usando VideoDecoderGLSurfaceView
+- Controle avançado de buffering e eventos de erro
+- UI customizada com overlays e transformações usando TextureView
+
+## Modos de reprodução
+- **VideoView**: simples, rápido, fácil de usar
+- **SurfaceView**: controle da superfície de renderização
+- **TextureView**: renderização flexível, transformações e overlays
+- **ExoPlayer / Media3**: player avançado para streaming, HLS/DASH e performance
+
+## Diferença entre VideoView, SurfaceView e TextureView
+- VideoView: rápido, fácil, limitado
+- SurfaceView: eficiente, integra OpenGL, ideal para customizações
+- TextureView: flexível, permite animações, filtros e overlays
+- ExoPlayer/Media3: moderno, streaming, controle total, GPU-friendly
 
 
 ## Como Executar
