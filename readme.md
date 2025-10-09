@@ -146,7 +146,7 @@ public class App extends Application {
         Log.d("my_log", "APP onCreate called"); // chamado primeiro, quando o processo é criado
     }
 }
-
+```
 Obs.: App deve estar declarada no AndroidManifest.xmlvia android:name=".App"(já presente no projeto).
 
 ### 📱 Ciclo de Vida - Application
