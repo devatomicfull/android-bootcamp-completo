@@ -8,6 +8,7 @@ import android.view.Surface;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.TextureView;
+import android.widget.MediaController;
 import android.widget.VideoView;
 
 import androidx.annotation.OptIn;
@@ -140,6 +141,8 @@ public class MainActivity extends AppCompatActivity implements SurfaceHolder.Cal
 
 
         videoView.setVideoURI(uri1);
+        MediaController md_Controller = new MediaController(this);
+        videoView.setMediaController(md_Controller); // controllar a midia
         videoView.start();
     }
 
