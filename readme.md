@@ -11,6 +11,7 @@
 - [Logcat e Registro para Fins de Depuração](#bootcamp6)
 - [Ciclo de Vida da Activity e da Application](#bootcamp7)
 - [Streaming de Vídeo Online ou Reprodução Local no Android](#bootcamp8)
+- [Menus e Interações com a Toolbar no Android](#bootcamp9)
 
 ---
 
@@ -226,6 +227,60 @@ Demonstrar diferentes formas de reproduzir vídeos no Android, usando VideoView,
 - TextureView: flexível, permite animações, filtros e overlays
 - ExoPlayer/Media3: moderno, streaming, controle total, GPU-friendly
 
+
+## <a id="bootcamp9"></a> Tópico 9: Menus e Interações com a Toolbar no Android
+
+## Objetivo
+Demonstrar o uso do **Options Menu** no Android, incluindo criação, manipulação e tratamento de eventos de clique nos itens do menu exibidos na **Toolbar** ou **Action Bar**.
+
+## Uso
+- Criar menus através de arquivos XML em `res/menu/`
+- Inflar o menu na Toolbar via `onCreateOptionsMenu`
+- Detectar e tratar cliques em itens com `onOptionsItemSelected`
+- Atualizar dinamicamente itens de menu com `onPrepareOptionsMenu`
+- Executar ações ao abrir e fechar o menu
+
+## Classes / Arquivos
+- `MainActivity.java`
+- `activity_main.xml`
+- `res/menu/main_menu.xml`
+
+## Para que serve
+- Demonstrar o ciclo de vida do menu de opções no Android
+- Ensinar como personalizar menus e reagir a eventos de usuário
+- Mostrar como inflar menus XML e associar ações programaticamente
+- Exemplo prático de integração entre XML e código Java na UI
+
+## Alternativas / Melhorias Futuras
+- Implementar menus contextuais (long press)
+- Adicionar **PopupMenu** para ações rápidas
+- Usar **BottomAppBar** e **NavigationView** para menus modernos
+- Integrar **MaterialToolbar** para consistência visual
+
+## Métodos Importantes
+| Método | Descrição |
+|--------|------------|
+| `onCreateOptionsMenu(Menu menu)` | Infla o menu XML e exibe os itens na Toolbar |
+| `onOptionsItemSelected(MenuItem item)` | Trata cliques nos itens do menu |
+| `onPrepareOptionsMenu(Menu menu)` | Atualiza dinamicamente os itens antes de exibir |
+| `onMenuOpened(int featureId, Menu menu)` | Executa ações quando o menu é aberto |
+| `onOptionsMenuClosed(Menu menu)` | Executa ações quando o menu é fechado |
+
+## Exemplo de XML (`res/menu/main_menu.xml`)
+```xml
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/menu_config"
+        android:title="Configurações"
+        android:icon="@drawable/ic_config"
+        android:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/menu_sobre"
+        android:title="Sobre"
+        android:icon="@drawable/ic_info"
+        android:showAsAction="ifRoom" />
+</menu>
+```
 
 ## Como Executar
 
