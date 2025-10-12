@@ -1,0 +1,39 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!--
+        Este arquivo define os estilos e temas visuais da aplicação Android.
+        Ele controla a aparência geral da interface, incluindo cores de fundo,
+        texto, botões, títulos e outros componentes de UI.
+    -->
+
+    <!--
+        Base application theme.
+        Este é o tema base da aplicação, herdando de Theme.Material3.Light,
+        o que significa que ele utiliza o tema claro do Material Design 3.
+    -->
+    <style name="Base.Theme.Bootcamp9_menu_testing" parent="Theme.Material3.Light">
+        <!-- Cor primária usada em elementos principais, como a barra superior (AppBar) e botões principais. -->
+        <item name="colorPrimary">@color/my_light_primary</item>
+
+        <!-- Cor secundária usada em componentes de destaque secundário (ex: FloatingActionButton, Switch, etc.). -->
+        <item name="colorSecondary">@color/my_light_secondary</item>
+
+        <!-- Cor de fundo geral das telas e layouts. -->
+        <item name="android:colorBackground">@color/my_light_background</item>
+
+        <!-- Cor aplicada aos textos de título dentro da Action Bar ou Toolbar. -->
+        <item name="titleTextColor">@color/purple</item>
+
+        <!-- Cor de destaque para elementos interativos (links, botões, seleções, etc.). -->
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <!--
+        Define o tema final da aplicação, herdando todas as propriedades do tema base.
+        Este estilo é o que normalmente é referenciado em AndroidManifest.xml, no atributo:
+        android:theme="@style/Theme.Bootcamp9_menu_testing"
+
+        Isso permite separar o tema base da definição final, facilitando
+        a reutilização e manutenção de estilos em diferentes contextos.
+    -->
+    <style name="Theme.Bootcamp9_menu_testing" parent="Base.Theme.Bootcamp9_menu_testing" />
+</resources>

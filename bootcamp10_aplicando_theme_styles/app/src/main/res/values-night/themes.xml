@@ -1,0 +1,66 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!--
+        Este arquivo define estilos e temas personalizados da aplicação Android.
+        Ele controla cores, aparência geral, e componentes visuais como botões,
+        ícones de menu e barras de ação.
+    -->
+
+    <!--
+        Base application theme.
+        Este é o tema principal da aplicação, herdando de Theme.Material3.DayNight,
+        o que permite alternar automaticamente entre tema claro e escuro.
+    -->
+    <style name="Base.Theme.Bootcamp9_menu_testing" parent="Theme.Material3.DayNight">
+        <!-- Define a cor primária usada em botões, barras e elementos de destaque. -->
+        <item name="colorPrimary">@color/primaryDark</item>
+
+        <!-- Cor primária em contextos escuros (como status bar). -->
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+
+        <!-- Define a cor de fundo padrão das telas. -->
+        <item name="android:colorBackground">@color/colorBackgroundDark</item>
+
+        <!-- Define a cor de destaque (ex: para botões, switches e controles interativos). -->
+        <item name="colorAccent">@color/colorAccent</item>
+
+        <!-- Define a cor usada para aplicar 'tint' (coloração) em ícones. -->
+        <item name="iconTint">@color/purple</item>
+
+        <!--
+            Aplica um estilo personalizado ao botão de overflow (três pontinhos do menu)
+            que aparece na AppBar (Action Bar).
+        -->
+        <item name="android:actionOverflowButtonStyle">@style/Base.Theme.Bootcamp9_menu_testing.OverFlow</item>
+    </style>
+
+    <!--
+        serve para :
+        Personalizar o botão de overflow (ícone de menu) exibido na Action Bar.
+        Este estilo altera o ícone padrão, a cor e o espaçamento lateral.
+    -->
+    <style name="Base.Theme.Bootcamp9_menu_testing.OverFlow">
+        <!-- Define o ícone que será usado no botão de overflow. -->
+        <item name="android:src">@drawable/ic_camera</item>
+
+        <!-- Define a cor de tint (coloração) aplicada sobre o ícone. -->
+        <item name="tint">#D78C1D</item>
+
+        <!-- Adiciona um espaçamento à direita do ícone. -->
+        <item name="android:paddingRight">8dp</item>
+    </style>
+
+    <!--
+        Tema alternativo sem barra de ação (NoActionBar),
+        que pode ser aplicado em telas específicas da aplicação.
+    -->
+    <style name="MyStyle" parent="Theme.AppCompat.NoActionBar">
+        <!-- Cor primária usada na aplicação. -->
+        <item name="android:colorPrimary">@color/purple</item>
+
+        <!-- Cor de fundo principal dos componentes. -->
+        <item name="backgroundColor">#D78C1D</item>
+
+        <!-- Cor primária escura (por exemplo, usada na status bar). -->
+        <item name="colorPrimaryDark">#FF0257</item>
+    </style>
+</resources>

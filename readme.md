@@ -282,6 +282,74 @@ Demonstrar o uso do **Options Menu** no Android, incluindo criação, manipulaç
 </menu>
 ```
 
+## <a id="bootcamp10"></a> Tópico 10: Temas, Styles e Aplicação de Style por Activity
+
+## Objetivo
+Trabalhar conceitos de **theme**, **style**, `AndroidManifest.xml`, `colors.xml`, `themes.xml` (light) e `themes.xml (night)` e aplicar um **style customizado** em uma Activity de forma individual.
+
+## Uso
+- Definir paleta de cores em `colors.xml`
+- Criar tema base (light) em `res/values/themes.xml`
+- Criar tema para night mode em `res/values-night/themes.xml`
+- Criar styles auxiliares (overflow, MyStyle) em `res/values/styles.xml` ou em `themes.xml`
+- Aplicar o tema global via `AndroidManifest.xml`
+- Sobrescrever tema de uma Activity individual via atributo `android:theme` no `AndroidManifest.xml`
+
+## Classes / Arquivos
+- `res/values/colors.xml`
+- `res/values/themes.xml`
+- `res/values-night/themes.xml`
+- `res/values/styles.xml` (ou mesclado em themes)
+- `AndroidManifest.xml`
+- `MainActivity.java`
+- `TestandoMeuStyleActivity.java` (Activity que usa `MyStyle`)
+
+## Para que serve
+- Demonstrar a hierarquia Theme → Style → componente
+- Ensinar como suportar modo claro/escur o (DayNight)
+- Mostrar como aplicar um style apenas em uma Activity específica sem afetar o app todo
+- Expor boas práticas de organização de paleta de cores e temas
+
+## Alternativas / melhorias futuras
+- Usar `ThemeOverlay` para variações locais sem duplicar temas
+- Ativar **Dynamic Color (Material You)** para Android 12+
+- Separar estilos por componentes (`themes.xml`, `styles.xml`, `colors.xml`) de forma mais granular
+- Implementar troca de tema em runtime via código (SharedPreferences + recreate())
+
+## Conteúdo dos arquivos (exatos trechos fornecidos)
+
+### styles / themes (Night / base com OverFlow e MyStyle)
+```xml
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.Bootcamp9_menu_testing" parent="Theme.Material3.DayNight">
+        <!-- Customize your light theme here. -->
+        <item name="colorPrimary">@color/primaryDark</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="android:colorBackground">@color/colorBackgroundDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="iconTint">@color/purple</item>
+
+        <item name="android:actionOverflowButtonStyle">@style/Base.Theme.Bootcamp9_menu_testing.OverFlow</item>
+    </style>
+
+    <!-- serve para :
+
+    -->
+    <style name="Base.Theme.Bootcamp9_menu_testing.OverFlow">
+        <item name="android:src">@drawable/ic_camera</item>
+        <item name="tint">#D78C1D</item>
+        <item name="android:paddingRight">8dp</item>
+    </style>
+
+    <style name="MyStyle" parent="Theme.AppCompat.NoActionBar">
+        <item name="android:colorPrimary">@color/purple</item>
+        <item name="backgroundColor">#D78C1D</item>
+        <item name="colorPrimaryDark">#FF0257</item>
+    </style>
+</resources>
+``` 
+
 ## Como Executar
 
 1. Clone o repositório:  
