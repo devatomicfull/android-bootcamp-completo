@@ -12,6 +12,7 @@
 - [Ciclo de Vida da Activity e da Application](#bootcamp7)
 - [Streaming de Vídeo Online ou Reprodução Local no Android](#bootcamp8)
 - [Menus e Interações com a Toolbar no Android](#bootcamp9)
+- [Temas (Themes), Estilos (Styles) e Aplicação de Style por Activity](#bootcamp10)
 
 ---
 
