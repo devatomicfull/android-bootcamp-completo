@@ -2,6 +2,19 @@
     <!-- Base application theme. -->
     <style name="Base.Theme.Bootcamp11_Animals_App" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your dark theme here. -->
-        <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
+        <!-- Mantém a identidade, mas ajusta o contraste -->
+        <item name="colorPrimary">#8d2036</item>        <!-- Vinho domina no dark mode -->
+        <item name="colorPrimaryDark">#b9d48b</item>    <!-- Verde oliva como destaque suave -->
+        <item name="colorAccent">#ce0a31</item>
+
+        <item name="android:colorBackground">#1E1E1E</item>
+        <item name="colorSurface">#2C2C2C</item>
+
+        <item name="android:textColorPrimary">#FFFFFF</item>
+        <item name="android:textColorSecondary">#CCCCCC</item>
+
+        <item name="android:buttonTint">@color/colorAccent</item>
+        <item name="android:navigationBarColor">#8d2036</item>
+        <item name="android:statusBarColor">#8d2036</item>
     </style>
 </resources>

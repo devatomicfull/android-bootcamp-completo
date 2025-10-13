@@ -4,7 +4,7 @@ plugins {
 
 android {
     namespace = "github.devatomicfull.bootcamp11_animals_app"
-    compileSdk = 35
+    compileSdk = 36
 
     defaultConfig {
         applicationId = "github.devatomicfull.bootcamp11_animals_app"

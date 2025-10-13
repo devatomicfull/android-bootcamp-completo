@@ -2,4 +2,13 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <!-- Paleta baseada na psicologia das cores -->
+    <color name="colorPrimary">#b9d48b</color>         <!-- Verde oliva suave: transmite estabilidade e harmonia -->
+    <color name="colorPrimaryDark">#8d2036</color>     <!-- Vinho escuro: força, confiança e profundidade -->
+    <color name="colorAccent">#ce0a31</color>          <!-- Vermelho vibrante: energia e ação -->
+    <color name="colorBackground">#d3e4c5</color>      <!-- Verde pastel: tranquilidade e leveza -->
+    <color name="colorSurface">#e4e4c5</color>         <!-- Bege claro: aconchego e neutralidade -->
+    <color name="colorOnPrimary">#FFFFFF</color>       <!-- Texto claro sobre o primary -->
+    <color name="colorOnBackground">#212121</color>    <!-- Texto escuro sobre o fundo claro -->
 </resources>
