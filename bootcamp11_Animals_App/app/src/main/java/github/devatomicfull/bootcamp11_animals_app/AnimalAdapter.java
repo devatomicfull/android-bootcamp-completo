@@ -24,14 +24,16 @@ public class AnimalAdapter extends RecyclerView.Adapter<AnimalAdapter.AnimalRowH
     @NonNull
     @Override
     public AnimalRowHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+        // i -> representa o viewType
         View view = LayoutInflater.from(context).inflate(R.layout.animal_row, viewGroup, false);
         return new AnimalRowHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull AnimalRowHolder viewHolder, int i) {
-        //viewHolder.textViewNomeAnimal;
-        //viewHolder.imageView
+        // i -> representa a posicao
+        viewHolder.textViewNomeAnimal.setText(animalData.get(i).getNome());
+        viewHolder.imageView.setImageResource(animalData.get(i).getImage());
     }
 
     @Override
