@@ -15,10 +15,12 @@ import java.util.List;
 public class AnimalAdapter extends RecyclerView.Adapter<AnimalAdapter.AnimalRowHolder> {
     private List<Animal> animalData;
     private Context context;
+    MyClickInterface myClickInterface;
 
-    public AnimalAdapter(List<Animal> animalData, Context context) {
+    public AnimalAdapter(List<Animal> animalData, Context context, MyClickInterface myClickInterface) {
         this.context = context;
         this.animalData = animalData;
+        this.myClickInterface = myClickInterface;
     }
 
     /**
@@ -144,6 +146,18 @@ public class AnimalAdapter extends RecyclerView.Adapter<AnimalAdapter.AnimalRowH
             // Associa os componentes visuais definidos no XML às variáveis do ViewHolder
             textViewNomeAnimal = itemView.findViewById(R.id.ttV_Animal);
             imageView = itemView.findViewById(R.id.imgV_Animal);
+
+            itemView.setOnClickListener(new View.OnClickListener(){
+                @Override
+                public void onClick(View view) {
+                    myClickInterface.onItemClick(getAdapterPosition());
+                }
+            });
         }
+    }
+
+    interface MyClickInterface{
+        // deve implementar essa interface
+        void onItemClick(int positionOfTheAnimal);
     }
 }

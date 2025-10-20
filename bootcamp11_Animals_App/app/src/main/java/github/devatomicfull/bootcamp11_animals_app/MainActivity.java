@@ -1,7 +1,9 @@
 package github.devatomicfull.bootcamp11_animals_app;
 
 import android.os.Bundle;
+import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -11,7 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements AnimalAdapter.MyClickInterface {
     private RecyclerView recyclerView;
     private List<Animal> animalList;
     @Override
@@ -26,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.recyclerView);
 
         // Recupera a lista de animais do storage
-        List<Animal> animalList = storage.getAnimalList();
+        animalList = storage.getAnimalList();
 
         // Se por algum motivo a lista vier nula, cria uma lista vazia (fallback)
         if (animalList == null) {
@@ -34,11 +36,16 @@ public class MainActivity extends AppCompatActivity {
         }
 
         // Cria e associa o adapter com a lista de animais
-        AnimalAdapter animalAdapter = new AnimalAdapter(animalList, this);
+        AnimalAdapter animalAdapter = new AnimalAdapter(animalList, this, this);
         recyclerView.setAdapter(animalAdapter);
 
         // Define o layout (lista vertical simples)
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
+    }
+
+    @Override
+    public void onItemClick(int positionOfTheAnimal) {
+        Toast.makeText(this, "Clicado "+ animalList.get(positionOfTheAnimal).getNome(), Toast.LENGTH_SHORT).show();
     }
 }
