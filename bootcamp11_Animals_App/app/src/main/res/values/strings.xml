@@ -1,3 +1,17 @@
 <resources>
     <string name="app_name">bootcamp11_Animals_App</string>
+
+    <string-array name="animais_name">
+        <item>bode</item>
+        <item>cao</item>
+        <item>cavalo</item>
+        <item>coelho</item>
+        <item>crocodilo</item>
+        <item>gato</item>
+        <item>leao</item>
+        <item>macaco</item>
+        <item>tigre</item>
+        <item>vaca</item>
+    </string-array>
+
 </resources>

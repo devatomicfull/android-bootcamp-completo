@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="animais_imgs">
+        <item>@drawable/bode</item>
+        <item>@drawable/cao</item>
+        <item>@drawable/cavalo</item>
+        <item>@drawable/coelho</item>
+        <item>@drawable/crocodilo</item>
+        <item>@drawable/gato</item>
+        <item>@drawable/leao</item>
+        <item>@drawable/macaco</item>
+        <item>@drawable/tigre</item>
+        <item>@drawable/vaca</item>
+    </string-array>
+</resources>
