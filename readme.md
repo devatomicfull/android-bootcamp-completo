@@ -450,6 +450,69 @@ Utilização de recursos de imagem localizados em múltiplas densidades hdpi, xh
 Implementação modular e reutilizável, separando lógica de apresentação, dados e interface.
 Possibilidade de alternar entre layout linear (lista) e layout em grade (grid) utilizando LinearLayoutManager ou GridLayoutManager.
 
+## Funcionalidade de Clique (Evento) - View.OnClickListener
+
+Na classe Adapter, é comum criar uma interface interna que define o contrato de interação entre o Adapter e o componente que o utiliza (geralmente uma Activity ou Fragment).
+Essa interface é usada como atributo dentro do Adapter e deve ser implementada pela classe que o utiliza. Isso acontece porque, no construtor do Adapter, estamos inicializando esse atributo, e quem o utiliza (por exemplo, a MainActivity) precisa indicar explicitamente que implementa a interface AnimalAdapter.MyClickInterface.
+Dessa forma, garantimos que o Adapter saiba quem é responsável por tratar o evento de clique e o que deve acontecer quando ele ocorre.
+
+Separação de responsabilidades
+No Adapter, utilizamos duas interfaces:
+
+A interface View.OnClickListener (do próprio Java/Android):
+Responsável por capturar o evento de clique na View.
+
+Nossa interface personalizada (MyClickInterface):
+Responsável por definir o que deve acontecer após o clique ser detectado.
+
+Essa abordagem permite separar as responsabilidades:
+
+O Adapter detecta o clique e apenas informa que ele ocorreu.
+A Activity ou Fragment decide qual ação deve ser executada após o clique.
+Exemplo de implementação na Activity:
+```java
+@Override
+public void onItemClick(int positionOfTheAnimal) {
+    Toast.makeText(this, "Clicado: " + animalList.get(positionOfTheAnimal).getNome(), Toast.LENGTH_SHORT).show();
+}
+```
+Poderíamos colocar o evento de clique diretamente no Adapter, mas isso quebraria o princípio da separação de responsabilidades, pois o Adapter ficaria encarregado tanto de exibir os dados quanto de definir comportamentos da interface, tornando o código menos reutilizável e mais difícil de manter.
+
+Métodos principais do Adapter
+
+public AnimalRowHolder(@NonNull View itemView)
+Responsável por localizar e armazenar as referências das Views que compõem cada item da lista.
+
+public void onBindViewHolder(@NonNull AnimalRowHolder viewHolder, int position)
+Responsável por preencher as Views com os dados correspondentes (ex: nome, imagem, descrição, etc.).
+
+public AnimalRowHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType)
+Responsável por inflar o layout personalizado (criar a View de cada item) a partir de um arquivo XML.
+
+public int getItemCount() (tamanho / size)
+Retorna o número total de itens que o Adapter irá exibir. Normalmente este método devolve lista.size() (ou o tamanho da coleção usada pelo Adapter). O RecyclerView usa esse valor para saber quantos ViewHolders precisa criar e para controlar a navegação/rolagem da lista.
+
+```java
+@Override
+public int getItemCount() {
+    return animalList == null ? 0 : animalList.size();
+}
+```
+Observações:
+
+É importante manter getItemCount() consistente com os dados reais do Adapter; caso contrário, pode ocorrer IndexOutOfBoundsException ao tentar acessar uma posição inválida em onBindViewHolder.
+
+Quando a lista de dados for atualizada (adição, remoção ou substituição de itens), chame os métodos de notificação apropriados (notifyDataSetChanged(), notifyItemInserted(), notifyItemRemoved(), etc.) para que o RecyclerView atualize corretamente a interface.
+
+Benefícios dessa organização
+
+Essa estrutura (separação de responsabilidades, interface de clique externa e métodos bem definidos) garante:
+
+Código mais organizado e desacoplado.
+Reutilização do Adapter em diferentes Activities/Fragments sem alterar seu comportamento interno.
+Manutenção mais simples, pois a lógica de apresentação (Adapter) e a lógica de ação (Activity/Fragment) ficam separadas.
+Controle explícito sobre o tamanho da coleção exibida pelo RecyclerView através de getItemCount().
+
 
 ## Como Executar
 
