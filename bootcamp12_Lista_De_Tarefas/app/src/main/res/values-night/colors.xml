@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Paleta Dark -->
+    <color name="colorPrimary">#f3a76d</color>
+    <color name="colorPrimaryDark">#d39679</color>
+    <color name="colorSecondary">#b88c87</color>
+    <color name="colorAccent">#997f87</color>
+
+    <!-- Cores de fundo -->
+    <color name="colorBackground">#121212</color>
+    <color name="colorSurface">#1E1E1E</color>
+
+    <!-- Cores de texto -->
+    <color name="colorOnPrimary">#000000</color>
+    <color name="colorOnBackground">#EAEAEA</color>
+</resources>

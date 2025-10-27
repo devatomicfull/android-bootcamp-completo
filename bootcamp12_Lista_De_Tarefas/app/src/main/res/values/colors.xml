@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Paleta Light -->
+    <color name="colorPrimary">#d39679</color>
+    <color name="colorPrimaryDark">#b88c87</color>
+    <color name="colorSecondary">#997f87</color>
+    <color name="colorAccent">#f3a76d</color>
+
+    <!-- Cores de fundo -->
+    <color name="colorBackground">#FFF9F7</color>
+    <color name="colorSurface">#FFFFFF</color>
+
+    <!-- Cores de texto -->
+    <color name="colorOnPrimary">#FFFFFF</color>
+    <color name="colorOnBackground">#212121</color>
+</resources>
