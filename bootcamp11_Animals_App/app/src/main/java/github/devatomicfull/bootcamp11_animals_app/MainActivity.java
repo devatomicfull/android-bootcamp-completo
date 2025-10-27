@@ -1,5 +1,6 @@
 package github.devatomicfull.bootcamp11_animals_app;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Toast;
 
@@ -47,5 +48,9 @@ public class MainActivity extends AppCompatActivity implements AnimalAdapter.MyC
     @Override
     public void onItemClick(int positionOfTheAnimal) {
         Toast.makeText(this, "Clicado "+ animalList.get(positionOfTheAnimal).getNome(), Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(this, ActivityAnimal_Info.class);
+        intent.putExtra("image", animalList.get(positionOfTheAnimal).getImage());
+        intent.putExtra("name", animalList.get(positionOfTheAnimal).getNome());
+        startActivity(intent);
     }
 }
