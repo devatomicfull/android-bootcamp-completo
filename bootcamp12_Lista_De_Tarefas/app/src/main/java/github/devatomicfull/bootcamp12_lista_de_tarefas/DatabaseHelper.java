@@ -78,6 +78,51 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     }
 
+/**
+
+ Método {@code onUpgrade(SQLiteDatabase sqLiteDatabase, int oldVersion, int newVersion)} —
+ responsável por gerenciar a verificação da estrutura do banco de dados quando a versão é incrementada.
+
+ <p>Este método é executado automaticamente sempre que a versão do banco (informada no construtor
+ da classe que estende {@link SQLiteOpenHelper}) é alterado para um número superior ao anterior.
+ O Android detecta essa diferença e chama o método {@code onUpgrade()} para permitir que o
+ O desenvolvedor realiza as modificações na estrutura (schema) do banco de dados. </p>
+
+ <h3> Função principal:</h3>
+ <p>Adaptar o banco existente para uma nova versão sem perder os dados já armazenados.</p>
+ <h3>Boas práticas:</h3>
+     <ul>
+         <li>**Evitar recriar as tabelas** com {@code DROP TABLE} — isso apagaria todos os registros existentes.</li>
+         <li>**Usar comandos ALTER TABLE** para adicionar ou renomear colunas, preservando os dados.</li>
+         <li>Executar migrações incrementais, tratando cada mudança de versão de forma controlada.</li>
+         <li>Manter um histórico de migrações, caso o app evolua com várias versões do banco.</li>
+     </ul>
+ <h3></h3> Exemplo de uso:</h3>
+ <p>Suponha que na nova versão do banco (versão 2), seja necessário adicionar uma coluna
+
+ {@code date} na tabela {@code Note} para armazenar os dados da anotação. </p>
+
+ <pre>{
+    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+        if (oldVersion < 2) {
+            db.execSQL("ALTER TABLE Note ADD COLUMN date TEXT");
+        }
+    }
+ </pre>
+
+<p>Este exemplo garante que apenas bancos com versões anteriores à 2 sejam atualizados,
+evitando execuções redundantes. Essa abordagem incremental permite compatibilidade
+com várias versões e facilita futuras evoluções do esquema. </p>
+
+<h3> Resumo:</h3>
+<ul>
+    <li>{@code onCreate()} → executado uma única vez, ao criar o banco.</li>
+    <li>{@code onUpgrade()} → executado sempre que há mudança na versão do banco.</li>
+    <li>Use {@code ALTER TABLE}, {@code CREATE TABLE IF NOT EXISTS} e migrações planejadas para   preservar os dados do usuário.</li>
+</ul>
+
+ */
+
     // Chamado quando o banco de dados precisa ser atualizado.
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int oldVersion, int newVersion) {
