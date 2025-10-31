@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteStatement;
 import android.util.Log;
 
 import androidx.annotation.Nullable;
@@ -218,5 +219,133 @@ public class NoteHandler extends DatabaseHelper{
 
         return notes;
     }
+
+    // RETORNA A TAREFA
+    
+    /**
+     * Lê uma única nota pelo ID usando rawQuery() com placeholders.
+     * Seguro contra SQL Injection.
+     *
+     * @param id ID da nota a ser buscada
+     * @return Note encontrada ou null se não existir
+     */
+    public Note readSingleNoteRawQuery(int id) {
+        Note note = null;
+        String sqlQuery = "SELECT * FROM Note WHERE id = ?";
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(sqlQuery, new String[]{String.valueOf(id)});
+
+        try {
+            if (cursor.moveToFirst()) {
+                int noteId = cursor.getInt(cursor.getColumnIndexOrThrow("id"));
+                String title = cursor.getString(cursor.getColumnIndexOrThrow("title"));
+                String description = cursor.getString(cursor.getColumnIndexOrThrow("description"));
+
+                note = new Note(title, description);
+                note.setId(noteId);
+            }
+        } finally {
+            cursor.close();
+            db.close();
+        }
+
+        return note;
+    }
+
+    public Note readSingleNoteQueryMethod(int id) {
+        Note note = null;
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.query(
+                "Note",                   // tabela
+                null,                     // colunas (null = todas)
+                "id = ?",                 // cláusula WHERE
+                new String[]{String.valueOf(id)}, // argumentos
+                null, null, null
+        );
+
+        try {
+            if (cursor.moveToFirst()) {
+                int noteId = cursor.getInt(cursor.getColumnIndexOrThrow("id"));
+                String title = cursor.getString(cursor.getColumnIndexOrThrow("title"));
+                String description = cursor.getString(cursor.getColumnIndexOrThrow("description"));
+
+                note = new Note(title, description);
+                note.setId(noteId);
+            }
+        } finally {
+            cursor.close();
+            db.close();
+        }
+
+        return note;
+    }
+
+
+    /**
+     * Lê uma única nota pelo ID usando SQLiteStatement com bind de tipo nativo.
+     * Seguro contra SQL Injection e preserva o tipo do parâmetro.
+     *
+     * @param id ID da nota a ser buscada
+     * @return Note encontrada ou null se não existir
+     */
+    public Note readSingleNoteStatement(int id) {
+        Note note = null;
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        String sql = "SELECT * FROM Note WHERE id = ?";
+        SQLiteStatement stmt = db.compileStatement(sql);
+        stmt.bindLong(1, id); // bind de tipo nativo (long/int)
+
+        Cursor cursor = db.rawQuery(sql, new String[]{String.valueOf(id)});
+        try {
+            if (cursor.moveToFirst()) {
+                int noteId = cursor.getInt(cursor.getColumnIndexOrThrow("id"));
+                String title = cursor.getString(cursor.getColumnIndexOrThrow("title"));
+                String description = cursor.getString(cursor.getColumnIndexOrThrow("description"));
+
+                note = new Note(title, description);
+                note.setId(noteId);
+            }
+        } finally {
+            cursor.close();
+            db.close();
+        }
+
+        return note;
+    }
+
+    public Note readSingleNoteDiretoAntigo(int id) {
+        Note note = null;
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT * FROM Note WHERE id = ?", new String[]{String.valueOf(id)});
+
+        try {
+            if (cursor.moveToFirst()) {
+                int indexId = cursor.getColumnIndex("id");
+                int indexTitle = cursor.getColumnIndex("title");
+                int indexDescription = cursor.getColumnIndex("description");
+
+                if (indexId != -1 && indexTitle != -1 && indexDescription != -1) {
+                    int noteId = cursor.getInt(indexId);
+                    String title = cursor.getString(indexTitle);
+                    String description = cursor.getString(indexDescription);
+
+                    note = new Note(title, description);
+                    note.setId(noteId);
+                } else {
+                    Log.e("DB_ERROR", "Colunas inválidas detectadas: id=" + indexId + ", title=" + indexTitle + ", description=" + indexDescription);
+                }
+            }
+        } finally {
+            cursor.close();
+            db.close();
+        }
+
+        return note;
+    }
+
+
 
 }
