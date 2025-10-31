@@ -296,6 +296,7 @@ public class NoteHandler extends DatabaseHelper{
 
         String sql = "SELECT * FROM Note WHERE id = ?";
         SQLiteStatement stmt = db.compileStatement(sql);
+        // ligando o ? que é o primeiro ao id
         stmt.bindLong(1, id); // bind de tipo nativo (long/int)
 
         Cursor cursor = db.rawQuery(sql, new String[]{String.valueOf(id)});
@@ -346,6 +347,56 @@ public class NoteHandler extends DatabaseHelper{
         return note;
     }
 
+
+    /**
+     * Atualiza uma ou mais colunas de uma tabela com base em um critério.
+     *
+     * @param tabela        Nome da tabela (ex: "Note")
+     * @param valores       ContentValues com os campos e novos valores
+     * @param colunaFiltro  Nome da coluna usada como filtro (ex: "id", "title", etc.)
+     * @param valorFiltro   Valor do parâmetro de filtro (ex: "5" ou "Minha Nota")
+     * @return true se uma ou mais linhas foram atualizadas, false caso contrário
+     */
+    public boolean atualizarRegistro(String tabela, ContentValues valores, String colunaFiltro, String valorFiltro) {
+        if (tabela == null || tabela.isBlank() ||
+                valores == null || valores.size() == 0 ||
+                colunaFiltro == null || colunaFiltro.isBlank() ||
+                valorFiltro == null || valorFiltro.isBlank()) {
+
+            Log.e("DB_UPDATE", "Parâmetros inválidos para atualização.");
+            return false;
+        }
+
+        SQLiteDatabase db = null;
+        try {
+            db = getWritableDatabase();
+
+            int linhasAfetadas = db.update(
+                    tabela,                        // tabela
+                    valores,                       // valores a atualizar
+                    colunaFiltro + " = ?",         // condição WHERE genérica
+                    new String[]{valorFiltro}      // valor do filtro
+            );
+
+            if (linhasAfetadas > 0) {
+                Log.i("DB_UPDATE", "Atualização bem-sucedida na tabela " + tabela +
+                        ". Linhas afetadas: " + linhasAfetadas);
+                return true;
+            } else {
+                Log.w("DB_UPDATE", "Nenhuma linha atualizada na tabela " + tabela +
+                        ". Filtro: " + colunaFiltro + " = " + valorFiltro);
+                return false;
+            }
+
+        } catch (Exception e) {
+            Log.e("DB_UPDATE", "Erro ao atualizar registro: " + e.getMessage(), e);
+            return false;
+        } finally {
+            if (db != null && db.isOpen()) {
+                db.close();
+            }
+        }
+    }
 
 
 }
