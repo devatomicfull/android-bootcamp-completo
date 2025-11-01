@@ -398,5 +398,32 @@ public class NoteHandler extends DatabaseHelper{
         }
     }
 
+    public boolean delete(int id) {
+        if (id > 0) {
+            // Para deletar, é mais seguro abrir em modo de escrita
+            SQLiteDatabase db = getWritableDatabase();
+
+            try {
+                // Corrigido o whereClause ("id = ?")
+                int linhasAfetadas = db.delete("Note", "id = ?", new String[]{String.valueOf(id)});
+
+                if (linhasAfetadas > 0) {
+                    Log.i("DB_DELETE", "Registro excluído com sucesso da tabela 'Note'. Linhas afetadas: " + linhasAfetadas);
+                    return true;
+                } else {
+                    Log.w("DB_DELETE", "Nenhuma linha foi excluída na tabela 'Note'. ID inexistente: " + id);
+                    return false;
+                }
+            } catch (Exception e) {
+                Log.e("DB_DELETE", "Erro ao excluir registro: " + e.getMessage(), e);
+                return false;
+            } finally {
+                db.close();
+            }
+        } else {
+            Log.e("DB_DELETE", "ID inválido, tente novamente!");
+            return false;
+        }
+    }
 
 }
