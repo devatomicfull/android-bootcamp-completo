@@ -14,6 +14,7 @@
 - [Menus e Interações com a Toolbar no Android](#bootcamp9)
 - [Temas (Themes), Estilos (Styles) e Aplicação de Style por Activity](#bootcamp10)
 - [Animais Apps](#bootcamp11)
+- [Lista de tarefas](#bootcamp12)
 
 ---
 
@@ -512,6 +513,86 @@ Código mais organizado e desacoplado.
 Reutilização do Adapter em diferentes Activities/Fragments sem alterar seu comportamento interno.
 Manutenção mais simples, pois a lógica de apresentação (Adapter) e a lógica de ação (Activity/Fragment) ficam separadas.
 Controle explícito sobre o tamanho da coleção exibida pelo RecyclerView através de getItemCount().
+
+# Bootcamp 12 — Lista de Tarefas (Android com SQLite)
+
+## Objetivo
+Este projeto demonstra o uso do **SQLite Database** no Android, mostrando a aplicação prática dos métodos **CRUD** (Create, Read, Update e Delete).  
+Diferente dos exemplos anteriores, este aplicativo **mantém os dados armazenados localmente**, mesmo após o fechamento do app.  
+Contudo, **os dados serão perdidos caso o aplicativo seja desinstalado**, pois o banco está armazenado na memória interna do app.
+
+## Uso
+O aplicativo utiliza o **SQLite** como banco de dados local para registrar, consultar, atualizar e excluir **tarefas (notas)**.  
+Cada tarefa possui um **título** e uma **descrição**, armazenados na tabela `Note`.
+
+## Estrutura de Arquivos / Classes
+- **DatabaseHelper.java**: Gerencia a criação e atualização do banco de dados SQLite (subclasse de `SQLiteOpenHelper`).
+- **Note.java**: Modelo de dados (entidade) que representa uma tarefa. Contém os atributos `id`, `title` e `description`.
+- **NoteHandler.java**: Classe responsável pelas operações CRUD no banco de dados (`create`, `read`, `update`, `delete`).
+- **NoteAdapter.java**: Adaptador do RecyclerView responsável por exibir as tarefas salvas em lista.
+- **note_holder.xml**: Layout do item de cada nota (título, descrição e botão de edição).
+
+## Banco de Dados Local
+**Nome do banco:** `NotesDatabase`  
+
+**Estrutura da tabela `Note`:**
+| Coluna       | Tipo   | Descrição                        |
+|-------------|-------|----------------------------------|
+| id          | INTEGER PRIMARY KEY AUTOINCREMENT | Identificador único da nota |
+| title       | TEXT  | Título da nota/tarefa            |
+| description | TEXT  | Descrição detalhada da nota      |
+
+**Local de armazenamento:**  
+O banco de dados é armazenado internamente no dispositivo Android, dentro do diretório do aplicativo.  
+Como é um banco **local**, ele é **apagado ao desinstalar o app**, mas permanece após fechar o aplicativo.
+
+## Funcionalidades Implementadas
+- **CREATE**: Adiciona uma nova nota no banco.
+- **READ**: Lê todas as notas armazenadas.
+- **READ (única nota)**: Busca uma nota específica pelo ID.
+- **UPDATE**: Atualiza uma nota existente.
+- **DELETE**: Exclui uma nota pelo ID.
+
+## Detalhes Técnicos
+- **DatabaseHelper**
+  - Responsável por criar e atualizar o banco de dados.
+  - Métodos principais:
+    - `onCreate(SQLiteDatabase db)` → cria a tabela `Note`.
+    - `onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion)` → gerencia alterações de versão.
+
+- **NoteHandler**
+  - Implementa os métodos CRUD:
+    - `create(Note note)` → insere registros.
+    - `readNotes()` → lista todas as notas.
+    - `readSingleNoteRawQuery(int id)` → busca uma nota específica.
+    - `atualizarRegistro(...)` → atualiza dados.
+    - `delete(int id)` → remove registros.
+  - Utiliza **ContentValues** e **Cursor** com boas práticas (fechamento de conexões e logs de erro).
+
+- **NoteAdapter**
+  - Gerencia a exibição das notas na tela por meio de um **RecyclerView**.
+  - Cada item exibe o título, descrição e botão de edição.
+
+## Conceitos Aplicados
+- Persistência de dados com **SQLiteOpenHelper**.
+- Uso de **ContentValues** e **Cursor** para manipulação segura de dados.
+- Boas práticas no fechamento de conexões (`db.close()` e `cursor.close()`).
+- Estrutura **MVC (Model–View–Controller)** adaptada para Android.
+- Logs de depuração com `Log.i()`, `Log.w()`, e `Log.e()` para controle de fluxo.
+
+## Características Principais
+- Armazenamento local e persistente.
+- Interface simples e funcional.
+- Código 100% em **Java (sem Kotlin)**.
+- Estrutura modular com documentação detalhada em cada método.
+- Uso de práticas seguras contra **SQL Injection** com placeholders (`?`).
+
+## Resultado Esperado
+Um aplicativo de **lista de tarefas** onde:
+- O usuário pode adicionar, editar, excluir e visualizar notas.
+- Os dados são salvos localmente e persistem após o fechamento do app.
+- As operações no banco seguem boas práticas e logs informativos no Logcat.
+
 
 
 ## Como Executar
